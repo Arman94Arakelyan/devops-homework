@@ -1,0 +1,71 @@
+sudo useradd jane
+
+sudo userdel jane
+
+cd /home/
+
+sudo useradd -m ani
+
+ls
+
+sudo rm -R ani
+
+sudo useradd -mk /home/arman aram
+
+sudo groupadd -g 1500 researcher
+
+sudo usermod aram -g researcher
+
+sudo usermod aram -G sudo
+
+sudo passwd aram
+
+su aram
+
+cat /etc//passwd | grep aram
+
+cat /etc//passwd | grep arman
+
+sudo usermod aram -g aram
+
+sudo groupdel aram
+
+sudo rm -R aram/
+
+touch test-file-assignment
+
+mkdir test-file-assignment
+
+mkdir test-directory-assignment
+
+ll test-file-assignment > output-file
+
+cat output-file
+
+ll test-directory-assignment > outout-directory
+
+sudo useradd test
+
+sudo usermod test -G researcher
+
+sudo chown test test-file-assignment
+
+sudo chgrp -R researcher  test-directory-assignment
+
+sudo chmod 107 test-file-assignment
+
+sudo chmod 700 test-directory-assignment
+
+ll test-directory-assignment >> outout-directory > outout-directory
+
+sudo userdel test
+sudo groupdel test
+sudo groupdel researcher
+
+sudo cp /etc/shadow /tmp/
+
+sudo diff /tmp/shadow /etc/shadow
+
+cp /etc/passwd /etc/group /tmp
+
+

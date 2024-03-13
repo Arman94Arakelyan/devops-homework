@@ -1,0 +1,5 @@
+- hosts: AWS
+  become: true
+  roles:
+    - commons
+    - node-exporter

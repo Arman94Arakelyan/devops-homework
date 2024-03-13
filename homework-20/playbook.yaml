@@ -1,0 +1,47 @@
+- name: this is lesson20 task
+  hosts: AWS
+  become: true
+  tasks:
+    - name: Install apache httpd
+      apt:
+        name: "{{ service_name }}"
+        state: present
+    - name: check ubuntu user exist or not
+      user:
+        name: "{{ user_name }}"
+        uid: 1000
+        group: ubuntu
+    - name: "Copy my index.html to remote host"
+      copy:
+        src: files/index.html
+        dest: /var/www/html/index.html
+        owner: root
+        group: root
+        mode: '0644'
+      notify: 'Restart apache2 service'
+  handlers:
+    - name: Restart apache2 service
+      service:
+        name: "{{ service_name }}"
+        state: 'restarted'
+- name: check loop
+  hosts: AWS
+  tasks:
+    - name: "create document in home directory"
+      file:
+        path: '/home/ubuntu/test1'
+        state: 'directory'
+    - name: "create document in home directory by loop"
+      file:
+        path: '{{ item }}'
+        state: 'directory'
+      loop:
+      - '/home/ubuntu/test2'
+      - '/home/ubuntu/test3'
+      - '/home/ubuntu/test4'
+      become: true
+      - name: using condition
+        hosts: AWS
+        become: true
+        tasks:
+        

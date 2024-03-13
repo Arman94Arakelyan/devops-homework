@@ -1,0 +1,36 @@
+---
+# tasks file for roles/node-exporter
+- name: Download node_exporter-1.7.0.linux-amd64.tar.gz
+  unarchive:
+    src: https://github.com/prometheus/node_exporter/releases/download/v1.7.0/node_exporter-1.7.0.linux-amd64.tar.gz
+    dest: /home/ubuntu
+    remote_src: yes
+
+- name: Add the user 'node_exporter' with false shell
+  user:
+    name: node_exporter
+    shell: /bin/false
+    create_home: no
+
+- name: Copy a node_exporter file to file /usr/local/bin
+  copy:
+    src: /home/ubuntu/node_exporter-1.7.0.linux-amd64/node_exporter
+    dest: /usr/local/bin/node_exporter
+    mode: a+x
+    owner: node_exporter
+    group: node_exporter
+    remote_src: yes
+
+- name: Copy a node_exporter service
+  copy:
+    src: node_exporter.service
+    dest: /etc/systemd/system/node_exporter.service
+
+
+- name: just force systemd to reread configs
+  systemd:
+    name: node_exporter
+    state: started
+    daemon_reload: yes
+    enabled: yes
+

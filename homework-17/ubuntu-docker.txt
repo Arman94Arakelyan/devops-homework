@@ -1,0 +1,32 @@
+Welcome to Ubuntu 22.04.3 LTS (GNU/Linux 6.2.0-1018-aws x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/pro
+
+  System information as of Sat Mar  2 23:45:04 UTC 2024
+
+  System load:  0.07666015625     Processes:                108
+  Usage of /:   23.3% of 7.57GB   Users logged in:          0
+  Memory usage: 27%               IPv4 address for docker0: 172.17.0.1
+  Swap usage:   0%                IPv4 address for eth0:    172.31.21.83
+
+
+Expanded Security Maintenance for Applications is not enabled.
+
+0 updates can be applied immediately.
+
+Enable ESM Apps to receive additional future security updates.
+See https://ubuntu.com/esm or run: sudo pro status
+
+
+The list of available updates is more than a week old.
+To check for new updates run: sudo apt update
+
+Last login: Sat Mar  2 23:42:07 2024 from 18.206.107.27
+To run a command as administrator (user "root"), use "sudo <command>".
+See "man sudo_root" for details.
+
+ubuntu@ip-172-31-21-83:~$ docker -v
+Docker version 24.0.5, build ced0996
+ubuntu@ip-172-31-21-83:~$ 

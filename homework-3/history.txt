@@ -1,0 +1,38 @@
+arman@arman:~$ ls -l karn.log
+ls: cannot access 'karn.log': No such file or directory
+arman@arman:~$ cd tmp/
+arman@arman:~/tmp$ touch karn.log
+arman@arman:~/tmp$ ls -l karn.log
+-rw-rw-r-- 1 arman arman 0 Մար 10 18:18 karn.log
+arman@arman:~/tmp$ gzip karn.log
+arman@arman:~/tmp$ ls -la karn.log.gz
+-rw-rw-r-- 1 arman arman 29 Մար 10 18:18 karn.log.gz
+arman@arman:~/tmp$ gzip -l karn.log.gz 
+         compressed        uncompressed  ratio uncompressed_name
+                 29                   0   0.0% karn.log
+arman@arman:~/tmp$ gunzip karn.log.gz 
+
+
+arman@arman:~/tmp$ gunzip karn.log.gz 
+arman@arman:~/tmp$ tar -cf karn.log.tar karn.log
+arman@arman:~/tmp$ ls -l karn.log.tar
+-rw-rw-r-- 1 arman arman 10240 Մար 10 18:25 karn.log.tar
+arman@arman:~/tmp$ tar -czf karn.log.tar.gz karn.log
+arman@arman:~/tmp$ ls -la karn.log.tar.gz
+-rw-rw-r-- 1 arman arman 115 Մար 10 18:27 karn.log.tar.gz
+arman@arman:~/tmp$ gzip -l karn.log.tar.gz 
+         compressed        uncompressed  ratio uncompressed_name
+                115               10240  99.1% karn.log.tar
+arman@arman:~/tmp$ la -l
+total 16
+-rw-rw-r-- 1 arman arman     0 Մար 10 18:18 karn.log
+-rw-rw-r-- 1 arman arman 10240 Մար 10 18:25 karn.log.tar
+-rw-rw-r-- 1 arman arman   115 Մար 10 18:27 karn.log.tar.gz
+arman@arman:~/tmp$ rm karn.log.tar
+arman@arman:~/tmp$ rm karn.log.tar.gz
+arman@arman:~/tmp$ ls -l
+total 0
+-rw-rw-r-- 1 arman arman 0 Մար 10 18:18 karn.log
+arman@arman:~/tmp$ rm karn.log
+arman@arman:~/tmp$ ls -l
+total 0

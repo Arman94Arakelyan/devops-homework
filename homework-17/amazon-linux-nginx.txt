@@ -1,0 +1,29 @@
+#!/bin/bash
+yum update -y
+amazon-linux-extras install nginx1.12
+systemctl start nginx
+systemctl enable nginx
+echo "<h1>Hello World from Arman $(hostname -f)</h1>" > /var/www/html/index.html
+
+
+
+
+arman@arman:~/.ssh-aws$ ssh -i "dev.pem" ec2-user@ec2-54-160-253-70.compute-1.amazonaws.com
+The authenticity of host 'ec2-54-160-253-70.compute-1.amazonaws.com (54.160.253.70)' can't be established.
+ED25519 key fingerprint is SHA256:fuTvP7cjyFMRWEgpen09QkGsR2spXSHr3PaHceTFJ2A.
+This key is not known by any other names
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added 'ec2-54-160-253-70.compute-1.amazonaws.com' (ED25519) to the list of known hosts.
+   ,     #_
+   ~\_  ####_        Amazon Linux 2023
+  ~~  \_#####\
+  ~~     \###|
+  ~~       \#/ ___   https://aws.amazon.com/linux/amazon-linux-2023
+   ~~       V~' '->
+    ~~~         /
+      ~~._.   _/
+         _/ _/
+       _/m/'
+[ec2-user@ip-172-31-31-176 ~]$ client_loop: send disconnect: Broken pipe
+arman@arman:~/.ssh-aws$ 
+ *  History restored 

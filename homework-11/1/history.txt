@@ -1,0 +1,35 @@
+
+    docker volume ls
+    docker volume create --name volume-nginx
+    docker volume ls
+    docker volume inspect volume-nginx
+    docker run -d --name volume-nginx -p 8085:80 -v volume-nginx:/usr/share/nginx/html nginx
+    docker ps
+    docker volume inspect volume-nginx
+    sudo ls /var/lib/docker/volumes/volume-nginx/
+    ls
+    sudo su
+    
+    root@arman:/home/arman/bdg-homework/homework-11# cd /var/lib/docker/volumes/
+root@arman:/var/lib/docker/volumes# ls
+backingFsBlockDev  metadata.db  volume-nginx
+root@arman:/var/lib/docker/volumes# cd volume-nginx/
+root@arman:/var/lib/docker/volumes/volume-nginx# ls
+_data
+root@arman:/var/lib/docker/volumes/volume-nginx# cd _data/
+root@arman:/var/lib/docker/volumes/volume-nginx/_data# ls
+50x.html  index.html
+root@arman:/var/lib/docker/volumes/volume-nginx/_data# nano index.html 
+root@arman:/var/lib/docker/volumes/volume-nginx/_data# exit
+exit
+docker rm -f 9ffc1f401a9c
+docker run -d --name volume-nginx -p 8085:80 -v volume-nginx:/usr/share/nginx/html nginx
+docker ps
+sudo su
+
+root@arman:/home/arman/bdg-homework/homework-11/1# cd /var/lib/docker/volumes/volume-nginx/
+root@arman:/var/lib/docker/volumes/volume-nginx# ls
+_data
+root@arman:/var/lib/docker/volumes/volume-nginx# cd _data/
+root@arman:/var/lib/docker/volumes/volume-nginx/_data# ls
+50x.html  index.html

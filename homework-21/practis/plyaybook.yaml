@@ -1,0 +1,24 @@
+- name: this is lesson21 with using blocks task
+  hosts: AWS
+  tasks:
+  - name: Install, configure and start nginx
+    block:
+    - name: install nginx
+      apt:
+        name: nginx
+        state: present
+        update_cache: yes
+    - name: "Copy my index.html to remote host"
+      copy:
+        src: files/index.html
+        dest: /var/www/html/index.html
+        owner: root
+        group: root
+        mode: '0644'
+    - name: Start service nginx, if not started
+      service:
+        name: nginx
+        state: started
+    when: ansible_facts['os_family'] == 'Debian'
+    become: true
+    ignore_errors: true

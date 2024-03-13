@@ -1,0 +1,6 @@
+[AWS]
+13.51.207.164 ansible_user=ubuntu
+
+[AWS:vars]
+user_name=ubuntu
+service_name=apache2

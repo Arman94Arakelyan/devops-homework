@@ -1,0 +1,21 @@
+  - hosts: AWS
+    become: true
+    tasks:
+      - name: Add the user 'johnd' with a specific uid and a primary group of 'admin'
+        user:
+          name: johnd
+          comment: John Doe
+          uid: 1040
+          group: wheel
+      - name: install the latest version of Apache
+        dnf:
+          name: httpd
+          state: latest
+      - name: Start service httpd, if not started
+        service:
+          name: httpd
+          state: started
+      - name: Enable service httpd, and not touch the state
+        service:
+          name: httpd
+          enabled: yes
