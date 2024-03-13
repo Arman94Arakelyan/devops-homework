@@ -1,0 +1,11 @@
+---
+# tasks file for roles/nginx
+- name: Create Nginx container
+  docker_container:
+    name: node_exporter
+    image: arturdavtyan/nginx:{{ image_tag }}
+    recreate: yes
+    ports:
+     - "80:80"
+    restart: yes
+    restart_policy: always

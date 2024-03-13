@@ -1,0 +1,6 @@
+[AWS]
+51.20.7.59 ansible_user=ubuntu
+
+[AWS:vars]
+network = monitoring
+image_tag = latest

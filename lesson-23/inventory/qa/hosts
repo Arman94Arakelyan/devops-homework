@@ -1,0 +1,4 @@
+[AWS]
+xx.xx.xx.xx ansible_user=ubuntu
+
+[AWS:vars]

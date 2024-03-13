@@ -1,0 +1,53 @@
+name: CI/CD Lesson 23
+env:
+  Image_tag: ${{ github.run_number }}
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  build-push:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Build the Docker image
+      run: |
+        cd lesson-23
+        docker build . --file Dockerfile --tag arturdavtyan/nginx:${{ env.Image_tag }}
+
+    - name: Login the Docker Hub
+      uses: docker/login-action@v3
+      with:
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+    - name: Push the Docker Hub
+      run: docker push arturdavtyan/nginx:${{ env.Image_tag }}
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: [build-push]
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - uses: webfactory/ssh-agent@v0.9.0
+      with:
+        ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+    
+    - name: add keyscan
+      run: |
+        ssh-keyscan 51.20.7.59 >> ~/.ssh/known_hosts
+
+    - name: Ansible playbook run
+      run: |
+        cd lesson-23
+        ansible-playbook -i inventory/dev/hosts -e image_tag=${{ env.Image_tag }} playbook.yaml

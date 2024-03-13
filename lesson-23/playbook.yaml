@@ -1,0 +1,4 @@
+- hosts: AWS
+  become: true
+  roles:
+    - nginx
